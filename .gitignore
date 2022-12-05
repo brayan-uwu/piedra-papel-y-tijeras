@@ -1,18 +1,44 @@
-# Build and Release Folders
-bin-debug/
-bin-release/
-[Oo]bj/
-[Bb]in/
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-# Other files and folders
-.settings/
+namespace piedra_papel_y_tijeras
+{
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+            Random rnd = new Random();
+            int res = 1, jugadaU;
+            string jugada, jugadaM;
+            string[] jugadas = { "piedra", "papel", "tijeras" };
+            while (res == 1)
+            {
+                Console.WriteLine("jugador. elije : (1:piedra, 2:papel,  3,tijera): ");
+                jugadaU = int.Parse(Console.ReadLine());
+                jugada = jugadas[jugadaU - 1];
+                jugadaM = jugadas[rnd.Next(0, 2)];
+                if ((jugada == "piedra") && (jugadaM == "tijeras"))
+                    Console.Write("ganaste jugador. la maquina jugo:" + jugadaM + "\n");
+                else if ((jugada == "papel") && (jugadaM == "piedra")) 
+                Console.Write("ganaste jugador. la maquina jugo:" + jugadaM + "\n");
+                else if ((jugada == "tijeras") && (jugadaM == "papel"))
+                    Console.Write("ganaste jugador. la maquina jugo:" + jugadaM + "\n");
 
-# Executables
-*.swf
-*.air
-*.ipa
-*.apk
-
-# Project files, i.e. `.project`, `.actionScriptProperties` and `.flexProperties`
-# should NOT be excluded as they contain compiler settings and other important
-# information for Eclipse / Flash Builder.
+                if ((jugadaM == "piedra") && (jugada == "tijeras"))
+                    Console.Write("gano la maquina por que jugo " + jugadaM + "\n");
+                else if ((jugadaM == "papel") && (jugada == "piedra"))
+                    Console.Write("gano la maquina por que jugo " + jugadaM + "\n");
+                else if ((jugadaM == "tijeras") && (jugada == "papel")) ;
+                if (((jugadaM == "piedra") && (jugada == "piedra")) || ((jugadaM == "papel") && (jugada == "papel"))
+                    || ((jugadaM == "tijeras") && (jugada == "tijeras")))
+                    Console.WriteLine("empate\n");
+                Console.WriteLine("\n desea continuar 1:si, 0: no");
+                res = int.Parse(Console.ReadLine());
+            }
+            Console.ReadKey();
+        }
+    }
+}
